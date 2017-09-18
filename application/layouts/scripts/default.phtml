@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<?php echo $this->headScript(); ?>
+		<?php echo $this->headMeta(); ?>
+		<?php echo $this->headTitle('Mis Contactos'); ?>
+		<?php echo $this->headLink(); ?>
+		<!-- Le styles --> 
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-crisp/resources/theme-crisp-all.css" rel="stylesheet" />
+      
+      <script src="https://use.fontawesome.com/f1559b8ac6.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+	</head>
+	<body>
+		
+		<?php echo $this->layout()->content; ?>
+		<?php echo $this->inlineScript(); ?>
+
+		<footer>
+			&copy; 2017, Victor Sanchez, Zend Framework <?php echo Zend_Version::VERSION; ?>
+		</footer>
+	</body>
+</html>

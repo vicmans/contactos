@@ -1,0 +1,91 @@
+<?php 
+$uri = "https://app.alegra.com/api/v1/contacts/";
+$client   = new Zend_Http_Client();
+$client->setUri($uri);
+$client->setAdapter('Zend_Http_Client_Adapter_Curl');
+$adapter  = $client->getAdapter();
+/** This setCurlOption is optional **/
+//$adapter->setCurlOption(CURLOPT_HTTPHEADER, false);
+$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
+$adapter->setCurlOption(CURLOPT_USERPWD, "vsanchezl94@gmail.com:01fe7db85a679b741137");
+$response = $client->request('GET');
+ ?>
+
+
+    <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+    <script>
+    	var datos = <?php echo $response->getBody(); ?>;
+
+Ext.onReady(function() {
+
+    var grid = Ext.create('Ext.grid.Panel', {
+        store: {
+        	data: datos
+        },
+        id: 'user',
+        title: 'Users',
+        iconCls: 'fa fa-users',
+        columns: [{
+            header: 'ID',
+            dataIndex: 'id',
+            flex: 10
+        }, {
+            header: 'Nombre',
+            dataIndex: 'name',
+            flex: 30,
+        }, {
+            header: 'Email',
+            flex: 30,
+            dataIndex: 'email'
+        },{
+        	header: 'identification',
+            flex: 30,
+        	dataIndex: 'identification'
+        },/*{
+            header: 'opciones',
+            tpl: 'Borrar, edit',
+            xtype: 'templatecolumn'
+        }*/],
+        dockedItems: [{
+            xtype: 'toolbar',
+            items: [{
+                text: 'Add',
+                iconCls: 'fa fa-plus',
+                handler: function(){
+                    window.location = '/client/add';
+                }
+            }, '-', {
+                itemId: 'delete',
+                text: 'Delete',
+                iconCls: 'fa fa-times',
+                disabled: true,
+                handler: function(){
+                    var selection = grid.getView().getSelectionModel().getSelection()[0];
+                    window.location = '/client/delete/id/'+selection.id;
+                }
+            }, '-', {
+                itemId: 'edit',
+                text: 'Editar',
+                iconCls: 'fa fa-pencil',
+                disabled: true,
+                handler: function(){
+                    var selection = grid.getView().getSelectionModel().getSelection()[0];
+                    window.location = '/client/edit/id/'+selection.id;
+                }
+            }]
+        }],
+        width: 800,
+        renderTo: Ext.getBody()
+    });
+    grid.getSelectionModel().on('selectionchange', function(selModel, selections){
+        grid.down('#delete').setDisabled(selections.length === 0);
+    });
+    grid.getSelectionModel().on('selectionchange', function(selModel, selections){
+        grid.down('#edit').setDisabled(selections.length === 0);
+    });
+
+});
+    </script>
+</head>
+<body></body>
+</html>

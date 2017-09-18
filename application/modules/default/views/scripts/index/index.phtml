@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Aprendiendo ExtJS</title>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-crisp/resources/theme-crisp-all.css" rel="stylesheet" />
+      
+      <script src="https://use.fontawesome.com/f1559b8ac6.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <script type="text/javascript">
+         Ext.onReady(function() {
+         Ext.create('Ext.Panel', {
+            renderTo: 'helloWorldPanel',
+            iconCls: 'fa fa-html5',
+            height: 200,
+            width: 600,
+            title: 'Hello world',
+            html: 'First Ext JS Hello World Program'
+            });
+         Ext.create('Ext.tab.Panel', {
+            renderTo: Ext.getBody(),
+            //height: 300,
+            //width: 400,
+            items: [{
+               xtype: 'grid',
+               title: 'Tab One',
+               //html: 'The first tab',
+               store: {
+                data: [{
+                    "Name": "apure",
+                    "identification": "25711609",
+                    "officeLocation": "Lawrence, KS",
+                    "phoneNumber": "(372) 792-6728"
+                }, {
+                    "Name": "Phillip",
+                    "identification": "Fry",
+                    "officeLocation": "Lawrence, KS",
+                    "phoneNumber": "(318) 224-8644"
+                }, {
+                    "Name": "Peter",
+                    "identification": "Quill",
+                    "officeLocation": "Redwood City, CA",
+                    "phoneNumber": "(718) 480-8560",
+                    "observation": "good",
+                }]
+            },
+               columns: [{
+                  text: 'Nombre',
+                  dataIndex: 'Name',
+                  flex: 1
+              }, {
+                  text: 'Identificacion',
+                  dataIndex: 'identification',
+                  flex: 1
+              }, {
+                  text: 'Phone Number',
+                  dataIndex: 'phoneNumber',
+                  flex: 1
+              },{
+                  text: 'Observaciones',
+                  dataIndex: 'observation',
+                  flex: 1
+              },]
+               },{
+               // xtype for all Component configurations in a Container
+               title: 'Tab Two',
+               html: 'The second tab',
+               listeners: {
+                  render: function() {
+                     Ext.MessageBox.alert('Tab two', 'Tab Two was clicked.');
+                  }
+               }
+            }]
+         });
+         });
+         
+      </script>
+   </head>
+   <body>
+      <div id="helloWorldPanel"></div>
+      <p>Hola. Bienvenidos a mi paginas, aqui puedes ver mis contactos.
+      Aqui: <a href="/client">Contactos</a> podras ver todos mis contactos sin ningun problemas, vamos, animate!
+
+      </p>
+   </body>
+</html>

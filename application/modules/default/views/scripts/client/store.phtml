@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	var res = <?php echo $this->resp; ?>
+
+    var msg = Ext.create('Ext.window.MessageBox');
+    console.log(res);
+    if (res.code == 400){
+        msg.alert(res.error, res.message,window.location = '/client/add');
+        
+
+    }else{
+/*       msg.show({
+                title : 'Error',
+                msg : res.message,                
+                
+                fn : function(buttonValue, inputText, showConfig){
+                    window.location = '/client'
+                },
+                iconCls : 'fa fa-times'
+            });
+*/		msg.alert('Listo', res.message,window.location = '/client/show/id/'+res.id);
+       
+    }
+</script>
+
+
+

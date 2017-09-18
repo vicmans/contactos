@@ -1,0 +1,22 @@
+<script type="text/javascript">
+	var res = <?php echo $this->resp; ?>
+
+    var msg = Ext.create('Ext.window.MessageBox');
+    console.log(res);
+    if (res.code == 2013){
+        msg.alert(res.error, res.message,window.location = '/client');
+        
+
+    }else{
+       msg.show({
+            title : 'Listo, ya se a editado',
+            msg : res.message,                
+            
+/*            fn : function(buttonValue, inputText, showConfig){
+                window.location = '/client/show/id/'+res.id
+            },*/
+            iconCls : 'fa fa-check'
+        });
+       
+    }
+</script>

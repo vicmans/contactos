@@ -1,0 +1,40 @@
+<?php 
+
+$id = $this->id;
+$ch = curl_init("https://app.alegra.com/api/v1/contacts/$id");
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',));
+curl_setopt($ch, CURLOPT_USERPWD, 'vsanchezl94@gmail.com:01fe7db85a679b741137');
+
+$resp = curl_exec($ch);
+
+curl_close($ch);
+
+?>
+
+<script type="text/javascript">
+    var res = <?php echo $resp; ?>
+
+    var msg = Ext.create('Ext.window.MessageBox');
+    console.log(res);
+    if (res.code == 200){
+        
+        msg.alert('Listo', res.message,window.location = '/client');
+
+    }else{
+/*       msg.show({
+                title : 'Error',
+                msg : res.message,                
+                
+                fn : function(buttonValue, inputText, showConfig){
+                    window.location = '/client'
+                },
+                iconCls : 'fa fa-times'
+            });
+*/
+       msg.alert('Listo', res.message,window.location = '/client');
+    }
+    
+</script>

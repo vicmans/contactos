@@ -1,5 +1,7 @@
+<?php $datos = $this->datos; ?>
+
 <script type="text/javascript">
-	var res = <?php echo $this->resp; ?>
+	var res = <?php echo $datos; ?>
 
     var msg = Ext.create('Ext.window.MessageBox');
     console.log(res);
@@ -10,11 +12,11 @@
     }else{
        msg.show({
             title : 'Listo, ya se a editado',
-            msg : res.message,                
+            msg : 'Todo ha salido bien',                
             
-/*            fn : function(buttonValue, inputText, showConfig){
+            fn : function(buttonValue, inputText, showConfig){
                 window.location = '/client/show/id/'+res.id
-            },*/
+            },
             iconCls : 'fa fa-check'
         });
        

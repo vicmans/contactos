@@ -76,10 +76,11 @@ class ClientController extends Zend_Controller_Action
 
     public function updateAction(){
 
-        $id = $this->_getParam('id', 0);
+        //$id = $this->_getParam('id', 0);
         
         $post = $this->getRequest()->getPost();
-
+        $id = $post['id'];
+        unset($post['id']);
         $datap=array_filter($post, "strlen");
 
         // Arreglar direccion
@@ -109,7 +110,7 @@ class ClientController extends Zend_Controller_Action
         $data_string = json_encode($datap);
         $resp = $cliente->update($id, $data_string);
 
-        $this->view->resp = $resp;
+        $this->view->datos = $resp;
     }
 
     public function deleteAction()

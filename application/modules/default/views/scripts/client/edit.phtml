@@ -132,11 +132,11 @@ Ext.onReady(function() {
             fieldLabel: 'Observaciones',
             name: 'observations',
             value: datos.observations
-        }/*,{
-            xtype: 'checkboxfield',
-            fieldLabel: 'Incluir estado de cuenta',
-            inputValue: '1',
-        }*/],
+        },{
+        xtype: 'hiddenfield',
+        name: 'id',
+        value: datos.id
+    }],
         buttons: [{
         	text: 'Limpiar',
         	handler: function(){
@@ -150,7 +150,7 @@ Ext.onReady(function() {
         		forn.getForm().submit({
         			method: 'POST',
         			standardSubmit:true,
-		    		url: '/client/update/id/'+datos.id,
+		    		url: '/client/update',
 		    		
 		    		success: function(form, action){
 						console.log("listo");
@@ -163,19 +163,7 @@ Ext.onReady(function() {
 		    				Ext.Msg.alert('csm', action.result.msg);
 		    			}
         		});
-/*        		if(form.isValid()){
-        			form.submit({
-        				method: 'POST',
-		    			url: '/client/update/id/'+datos.id,
-		    			success: function(form, action){
-		    				Ext.Msg.alert('Listo CTM!', action.result.msg);
-		    				console.log("listo");
-		    			},
-		    			failure: function(form, action){
-		    				Ext.Msg.alert('csm', action.result.msg);
-		    			}
-		    		});
-        		}*/
+
         	}
         }],
         renderTo: Ext.getBody()

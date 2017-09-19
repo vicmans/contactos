@@ -7,7 +7,7 @@ defined('APPLICATION_PATH')
 // Define application environment
 defined('APPLICATION_ENV')
         || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') :
-                        'development'));
+                        'production'));
 
 // Configuramos el include path, es decir los directorios donde estarán nuestros archivos
 $rootPath = dirname(__FILE__)."/..";

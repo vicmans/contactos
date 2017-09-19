@@ -44,7 +44,7 @@ Ext.onReady(function() {
 '<dl class="row">',
 '  <dt class="col-sm-3">Nombre</dt>',
   '<dd class="col-sm-9">'+datos.name+'</dd>',
-  '<dt class="col-sm-3">Euismod</dt>',
+  '<dt class="col-sm-3">Identificación</dt>',
   '<dd class="col-sm-9">'+datos.identification+'</dd>',
   '<dt class="col-sm-3">Direccion</dt>',
   '<dd class="col-sm-9"><p>'+datos.address.address+'</p><p>'+ datos.address.city+'</p></dd>',
@@ -67,7 +67,7 @@ Ext.onReady(function() {
             '<p>Correo electrónico: '+datos.email+'</p>',
             '<p>Observaciones: '+datos.observations+'</p>',*/
         ],
-        renderTo: Ext.getBody()
+        renderTo: 'content'
     });
 
 });

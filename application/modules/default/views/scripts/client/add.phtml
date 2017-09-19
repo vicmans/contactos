@@ -151,37 +151,12 @@ Ext.onReady(function() {
 		    				Ext.Msg.alert('csm', action.result.msg);
 		    			}
         		});
-/*        		if(form.isValid()){
-        			form.submit({
-        				method: 'POST',
-		    			url: 'http://localhost:8080/client/store',
-		    			success: function(form, action){
-		    				Ext.Msg.alert('Listo CTM!', action.result.msg);
-		    				console.log("listo");
-		    			},
-		    			failure: function(form, action){
-		    				Ext.Msg.alert('csm', action.result.msg);
-		    			}
-		    		});
-        		}*/
+
         	}
         }],
-        renderTo: Ext.getBody()
+        renderTo: 'content'
     });
-    /*Ext.define('MyCont',{
-    	extend: 'Ext.app.ViewController',
 
-    	onSubmit: function() {
-    		var form = this.getView();
-
-    		form.submit({
-    			url: 'url',
-    			success: function(){
-    				Ext.Msg.alert('Listo CTM!');
-    			}
-    		});
-    	}
-    });*/
 });
 
 </script>

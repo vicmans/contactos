@@ -63,7 +63,7 @@ Ext.onReady(function() {
             value: datos.mobile
         },{
            xtype: 'combobox',
-           fieldLabel: 'Lista de precoi',
+           fieldLabel: 'Lista de precio',
            name: 'priceList',
            //value: datos.priceList.name,
            store: Ext.create('Ext.data.Store', {
@@ -166,7 +166,7 @@ Ext.onReady(function() {
 
         	}
         }],
-        renderTo: Ext.getBody()
+        renderTo: 'content'
     });
     /*Ext.define('MyCont',{
     	extend: 'Ext.app.ViewController',

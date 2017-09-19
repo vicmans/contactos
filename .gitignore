@@ -24,3 +24,6 @@ data/DoctrineORMModule/cache/
 demos/
 extras/documentation
 tests/
+
+# Propio de la aplicacion
+application/configs/api.json

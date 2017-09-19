@@ -11,7 +11,13 @@ defined('APPLICATION_ENV')
 
 // Configuramos el include path, es decir los directorios donde estarán nuestros archivos
 $rootPath = dirname(__FILE__)."/..";
- 
+
+// Leyendo los datos de conexcion API
+$data = file_get_contents(realpath(dirname(__FILE__) . '/../application/configs/api.json'));
+$apikey = json_decode($data, true);
+define("MAIL", $apikey['email']);
+define("TOKEN", $apikey['key']);
+
 set_include_path($rootPath . '/application/config' . PATH_SEPARATOR . $rootPath . '/library/');
 
 // Ensure library/ is on include_path

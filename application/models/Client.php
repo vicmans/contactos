@@ -93,4 +93,19 @@ class Application_Model_Client extends Zend_Rest_Client
 		return $resp;
 
     }
+
+    public function buscar($query, $type = "query"){
+
+    	$uri = "https://app.alegra.com/api/v1/contacts/$type/$query";
+		$client   = new Zend_Http_Client();
+		$client->setUri($uri);
+		$client->setAdapter('Zend_Http_Client_Adapter_Curl');
+		$adapter  = $client->getAdapter();
+
+		$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
+		$adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
+		$response = $client->request('GET');
+		return $response->getBody();
+    }
+
 }

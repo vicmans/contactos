@@ -9,11 +9,9 @@ $adapter  = $client->getAdapter();
 $adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
 $adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
 $response = $client->request('GET');
- ?>
+?>
 
-
-    <!-- The line below must be kept intact for Sencha Cmd to build your application -->
-    <script>
+<script>
     	var datos = <?php echo $response->getBody(); ?>;
 
 Ext.onReady(function() {
@@ -49,7 +47,7 @@ Ext.onReady(function() {
         dockedItems: [{
             xtype: 'toolbar',
             items: [{
-                text: 'Add',
+                text: 'Agregar nuevo',
                 iconCls: 'text-success fa fa-plus',
                 handler: function(){
                     window.location = '/client/add';

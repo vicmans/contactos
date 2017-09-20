@@ -7,13 +7,13 @@ Ext.onReady(function() {
 
     var forn = Ext.create('Ext.form.Panel',{
         
-        title: 'Add Client',
+        title: 'Agregar Nuevo Contacto',
         iconCls: 'fa fa-plus',
-        width: 600,
-        bodyPadding: 12,
+        width: 800,
+        bodyPadding: 8,
         items: [{
             xtype: 'textfield',
-            fieldLabel: 'Nombre',
+            fieldLabel: 'Nombre*',
             name: 'name',
             allowBlank: false,
             regex:/^[ a-zA-ZñÑ' ]+$/,
@@ -56,14 +56,16 @@ Ext.onReady(function() {
            fieldLabel: 'Lista de precio',
            name: 'priceList',
            store: Ext.create('Ext.data.Store', {
-                    fields: ['name'],
-                    data: [{ 
-                       'name': 'General'
-                    },{
-                       'name': 'Ninguna'
-                    }]
+                fields: ['name','id'],
+                data: [{ 
+                   'name': 'General',
+                   'id': 1
+                },{
+                   'name': 'Ninguna',
+                   'id': null
+                }]
                  }),
-           valueField: 'name',
+           valueField: 'id',
            displayField: 'name'
         },{
             xtype: 'combobox',

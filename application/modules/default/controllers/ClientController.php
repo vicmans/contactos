@@ -12,6 +12,16 @@ class ClientController extends Zend_Controller_Action
     public function indexAction()
     {
         $this->view->saludo = "hola a todos!!";
+
+        $tipo = $this->_getParam('view', 0);
+
+        $this->view->headTitle($tipo.' - ');
+        
+        $cliente = new Application_Model_Client();
+
+        $resp = $cliente->buscar($tipo,"type");
+
+        $this->view->data = $resp;
     }
 
     public function addAction()
@@ -130,6 +140,41 @@ class ClientController extends Zend_Controller_Action
         $clien = new Application_Model_Client();
 
         $resp = $clien->get($id);
+
+        $this->view->data = $resp;
+    }
+
+    public function buscarAction()
+    {
+        $post = $this->getRequest()->getPost();
+
+        $this->view->headTitle('Resultados de la busqueda - ');
+        
+        $clien = new Application_Model_Client();
+
+        $resp = $clien->buscar($post['busca']);
+
+        $this->view->data = $resp;
+    }
+
+    public function clientsAction()
+    {
+        $this->view->headTitle('Clientes - ');
+        
+        $cliente = new Application_Model_Client();
+
+        $resp = $cliente->buscar('client',"type");
+
+        $this->view->data = $resp;
+    }
+
+        public function providersAction()
+    {
+        $this->view->headTitle('Proveedores - ');
+        
+        $cliente = new Application_Model_Client();
+
+        $resp = $cliente->buscar('provider',"type");
 
         $this->view->data = $resp;
     }

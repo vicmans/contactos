@@ -16,7 +16,7 @@ Ext.onReady(function() {
         bodyPadding: 12,
         items: [{
             xtype: 'textfield',
-            fieldLabel: 'Nombre',
+            fieldLabel: 'Nombre*',
             name: 'name',
             value: datos['name'],
             allowBlank: false,
@@ -67,12 +67,14 @@ Ext.onReady(function() {
            name: 'priceList',
            //value: datos.priceList.name,
            store: Ext.create('Ext.data.Store', {
-                    fields: ['name'],
-                    data: [{ 
-                       'name': 'General'
-                    },{
-                       'name': 'Ninguna'
-                    }]
+                fields: ['name','id'],
+                data: [{ 
+                   'name': 'General',
+                   'id': 1
+                },{
+                   'name': 'Ninguna',
+                   'id': 0
+                }]
                  }),
            valueField: 'name',
            displayField: 'name'
@@ -121,12 +123,12 @@ Ext.onReady(function() {
             xtype: 'checkboxfield',
             fieldLabel: 'Cliente',
             inputValue: '1',
-            name: 'type'
+            name: 'client'
         },{
             xtype: 'checkboxfield',
             fieldLabel: 'Proveedor',
             inputValue: '1',
-            name: 'type'
+            name: 'provider'
         },{
             xtype: 'textarea',
             fieldLabel: 'Observaciones',

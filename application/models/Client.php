@@ -88,7 +88,7 @@ class Application_Model_Client extends Zend_Rest_Client
 		);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $cliente);
-		
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 
 		$response = curl_exec($ch);

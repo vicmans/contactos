@@ -37,6 +37,8 @@ class ClientController extends Zend_Controller_Action
         $resp = $clien->get($id);
 
         $this->view->headTitle('Editar - ');
+        $scripts = $this->view->inlineScript();
+        $scripts->appendFile('/js/client/edit.js');
 
         $this->view->data = $resp;
     }
@@ -137,6 +139,8 @@ class ClientController extends Zend_Controller_Action
         $clien = new Application_Model_Client();
 
         $resp = $clien->get($id);
+        $scripts = $this->view->inlineScript();
+        $scripts->appendFile('/js/client/show.js');
 
         $this->view->data = $resp;
     }

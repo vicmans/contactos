@@ -1,18 +1,11 @@
 <?php 
-$uri = "https://app.alegra.com/api/v1/contacts/";
-$client   = new Zend_Http_Client();
-$client->setUri($uri);
-$client->setAdapter('Zend_Http_Client_Adapter_Curl');
-$adapter  = $client->getAdapter();
-/** This setCurlOption is optional **/
-//$adapter->setCurlOption(CURLOPT_HTTPHEADER, false);
-$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
-$adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
-$response = $client->request('GET');
+
+$response = $this->response;
+
 ?>
 
 <script>
-    	var datos = <?php echo $response->getBody(); ?>;
+    	var datos = <?php echo $response; ?>;
 
 Ext.onReady(function() {
 

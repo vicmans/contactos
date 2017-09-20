@@ -13,15 +13,12 @@ class ClientController extends Zend_Controller_Action
     {
         $this->view->saludo = "hola a todos!!";
 
-        $tipo = $this->_getParam('view', 0);
+        $clien = new Application_Model_Client();
 
-        $this->view->headTitle($tipo.' - ');
-        
-        $cliente = new Application_Model_Client();
+        $resp = $clien->getAll();
 
-        $resp = $cliente->buscar($tipo,"type");
+        $this->view->response = $resp;
 
-        $this->view->data = $resp;
     }
 
     public function addAction()

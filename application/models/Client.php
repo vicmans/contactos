@@ -30,8 +30,9 @@ class Application_Model_Client extends Zend_Rest_Client
     /**
      *  agrega un nuevo album a la base de datos
      * @param string $cliente datos Json
-     * @return <type> $response
+     * @return string Respuesta json
      */
+
     public function add($cliente)
     {
         // Agregando
@@ -51,11 +52,27 @@ class Application_Model_Client extends Zend_Rest_Client
 		curl_close($ch);
 		return $response;
     }
+    /**
+     * Obtener todos los contactos
+     *
+     * @return string Json
+     */
+    public function getAll(){
+    	$uri = "https://app.alegra.com/api/v1/contacts/";
+		$client   = new Zend_Http_Client();
+		$client->setUri($uri);
+		$client->setAdapter('Zend_Http_Client_Adapter_Curl');
+		$adapter  = $client->getAdapter();
+		$adapter->setCurlOption(CURLOPT_HTTPHEADER, array('Accept: application/json','Content-type: application/json'));
+		$adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
+		$response = $client->request('GET');
+		return $response;
+    }
      /**
      *  Edita un contacto
-     * @param <int> $id id cliente a editar
-     * @param <type> $cliente datos Json
-     * @return <type> $response
+     * @param Integer $id id cliente a editar
+     * @param string $cliente datos Json
+     * @return string $response
      */
     public function update($id,$cliente)
     {

@@ -66,7 +66,7 @@ class Application_Model_Client extends Zend_Rest_Client
 		$adapter->setCurlOption(CURLOPT_HTTPHEADER, array('Accept: application/json','Content-type: application/json'));
 		$adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
 		$response = $client->request('GET');
-		return $response;
+		return $response->getBody();
     }
      /**
      *  Edita un contacto

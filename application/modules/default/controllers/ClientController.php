@@ -146,6 +146,7 @@ class ClientController extends Zend_Controller_Action
         $post = $this->getRequest()->getPost();
 
         $this->view->headTitle('Resultados de la busqueda - ');
+        $this->view->inlineScript()->appendFile('/js/client/search.js');
         
         $clien = new Application_Model_Client();
 
@@ -157,6 +158,7 @@ class ClientController extends Zend_Controller_Action
     public function clientsAction()
     {
         $this->view->headTitle('Clientes - ');
+        $this->view->inlineScript()->appendFile('/js/client/search.js');
         
         $cliente = new Application_Model_Client();
 
@@ -165,14 +167,15 @@ class ClientController extends Zend_Controller_Action
         $this->view->data = $resp;
     }
 
-        public function providersAction()
+    public function providersAction()
     {
         $this->view->headTitle('Proveedores - ');
         
         $cliente = new Application_Model_Client();
 
         $resp = $cliente->buscar('provider',"type");
-
+        $scripts = $this->view->inlineScript();
+        $scripts->appendFile('/js/client/search.js');
         $this->view->data = $resp;
     }
 }

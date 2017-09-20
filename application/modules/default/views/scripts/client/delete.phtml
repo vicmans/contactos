@@ -1,16 +1,6 @@
 <?php 
 
-$id = $this->id;
-$ch = curl_init("https://app.alegra.com/api/v1/contacts/$id");
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json',));
-curl_setopt($ch, CURLOPT_USERPWD, 'vsanchezl94@gmail.com:01fe7db85a679b741137');
-
-$resp = curl_exec($ch);
-
-curl_close($ch);
+$resp = $this->respuesta;
 
 ?>
 

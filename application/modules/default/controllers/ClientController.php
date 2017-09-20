@@ -117,12 +117,16 @@ class ClientController extends Zend_Controller_Action
     {
     	$id = $this->_getParam('id', 0);
 
-    	$this->view->id = $id;
+        $cliente = new Application_Model_Client();
+
+        $response = $cliente->delete($id);
+
+    	$this->view->respuesta = $response;
     }
     public function showAction()
     {
         $id = $this->_getParam('id', 0);
-
+        
         $clien = new Application_Model_Client();
 
         $resp = $clien->get($id);

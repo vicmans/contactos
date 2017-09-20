@@ -7,7 +7,7 @@ defined('APPLICATION_PATH')
 // Define application environment
 defined('APPLICATION_ENV')
         || define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') :
-                        'production'));
+                        'development'));
 
 // Configuramos el include path, es decir los directorios donde estarán nuestros archivos
 $rootPath = dirname(__FILE__)."/..";
@@ -17,6 +17,7 @@ $data = file_get_contents(realpath(dirname(__FILE__) . '/../application/configs/
 $apikey = json_decode($data, true);
 define("MAIL", $apikey['email']);
 define("TOKEN", $apikey['key']);
+define("AUTHKEY", base64_encode($apikey['email'].":".$apikey['key']));
 
 set_include_path($rootPath . '/application/config' . PATH_SEPARATOR . $rootPath . '/library/');
 

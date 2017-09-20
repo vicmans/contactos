@@ -2,7 +2,7 @@
 
 class Application_Model_Client extends Zend_Rest_Client
 {
-	
+
 	/**
      * devuelve un arreglo con los datos del contacto con id=$id
      * @param <type> $id id
@@ -21,7 +21,7 @@ class Application_Model_Client extends Zend_Rest_Client
 	    /** This setCurlOption is optional **/
 	    //$adapter->setCurlOption(CURLOPT_HTTPHEADER, false);
 	    //$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
-	    $adapter->setCurlOption(CURLOPT_USERPWD, "vsanchezl94@gmail.com:01fe7db85a679b741137");
+	    $adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
 
 		$response = $client->request('GET');
 		//echo $response->getBody();
@@ -29,7 +29,7 @@ class Application_Model_Client extends Zend_Rest_Client
     }
     /**
      *  agrega un nuevo album a la base de datos
-     * @param <string> $cliente datos Json
+     * @param string $cliente datos Json
      * @return <type> $response
      */
     public function add($cliente)
@@ -39,13 +39,13 @@ class Application_Model_Client extends Zend_Rest_Client
 		$headers = array(
 		'Accept: application/json',
 		'Content-Type: application/json',
-		'Authorization: Basic dnNhbmNoZXpsOTRAZ21haWwuY29tOjAxZmU3ZGI4NWE2NzliNzQxMTM3',
+		'Authorization: Basic '.AUTHKEY,
 		);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $cliente);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		//curl_setopt($ch, CURLOPT_USERPWD, "vsanchezl94@gmail.com:01fe7db85a679b741137");
+		//curl_setopt($ch, CURLOPT_USERPWD, MAIL.":".TOKEN);
 
 		$response = curl_exec($ch);
 		curl_close($ch);
@@ -65,7 +65,7 @@ class Application_Model_Client extends Zend_Rest_Client
 		$headers = array(
 		'Accept: application/json',
 		'Content-Type: application/json',
-		'Authorization: Basic dnNhbmNoZXpsOTRAZ21haWwuY29tOjAxZmU3ZGI4NWE2NzliNzQxMTM3',
+		'Authorization: Basic '.AUTHKEY,
 		);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $cliente);
@@ -75,5 +75,22 @@ class Application_Model_Client extends Zend_Rest_Client
 		$response = curl_exec($ch);
 		curl_close($ch);
 		return $response;
+    }
+
+    public function delete($id){
+
+		$ch = curl_init("https://app.alegra.com/api/v1/contacts/$id");
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		    'Content-Type: application/json',));
+		curl_setopt($ch, CURLOPT_USERPWD, MAIL.':'.TOKEN);
+
+		$resp = curl_exec($ch);
+
+		curl_close($ch);
+
+		return $resp;
+
     }
 }

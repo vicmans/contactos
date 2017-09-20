@@ -1,5 +1,11 @@
 <script type="text/javascript">
-       
+function nullForEmpty(a) {
+  if (a === null){
+    return 'sin registro';
+  }else{
+    return a;
+  }
+}      
 var datos = <?php echo $this->data; ?>; 
 Ext.require('Ext.panel.Panel');     
 Ext.onReady(function() {
@@ -51,7 +57,7 @@ Ext.onReady(function() {
   '<dt class="col-sm-3">Teléfono</dt>',
  '<dd class="col-sm-9">'+datos.phonePrimary+'</dd>',
   '<dt class="col-sm-3">Teléfono 2</dt>',
-  '<dd class="col-sm-9">'+datos.phoneSecondary+'</dd>',
+  '<dd class="col-sm-9">'+nullForEmpty(datos.phoneSecondary)+'</dd>',
   '<dt class="col-sm-3">Celular</dt>',
   '<dd class="col-sm-9">'+datos.mobile+'</dd>',
   '<dt class="col-sm-3">Correo electrónico</dt>',

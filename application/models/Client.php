@@ -1,12 +1,16 @@
 <?php
-
+/**
+ * Mis Contactos de Alegra (http://myhelloclud.azurewebsites.net)
+ *
+ * @author    Victor Sanchez
+ */
 class Application_Model_Client extends Zend_Rest_Client
 {
 
 	/**
      * devuelve un arreglo con los datos del contacto con id=$id
-     * @param <type> $id id
-     * @return <type> array asociativo
+     * @param int $id id
+     * @return string Datos en JSON
      */
     public function get($id)
     {
@@ -18,9 +22,7 @@ class Application_Model_Client extends Zend_Rest_Client
 	    $client->setUri($uri);
 	    $client->setAdapter('Zend_Http_Client_Adapter_Curl');
 	    $adapter  = $client->getAdapter();
-	    /** This setCurlOption is optional **/
-	    //$adapter->setCurlOption(CURLOPT_HTTPHEADER, false);
-	    //$adapter->setCurlOption(CURLOPT_SSL_VERIFYPEER, array('Accept: application/json','Content-type: application/json'));
+	    
 	    $adapter->setCurlOption(CURLOPT_USERPWD, MAIL.":".TOKEN);
 
 		$response = $client->request('GET');
@@ -72,7 +74,7 @@ class Application_Model_Client extends Zend_Rest_Client
      *  Edita un contacto
      * @param Integer $id id cliente a editar
      * @param string $cliente datos Json
-     * @return string $response
+     * @return string $response en json
      */
     public function update($id,$cliente)
     {
@@ -93,7 +95,11 @@ class Application_Model_Client extends Zend_Rest_Client
 		curl_close($ch);
 		return $response;
     }
-
+    /**
+     *  Borra un contacto
+     * @param integer $id id cliente a borrar
+     * @return string $response en json
+     */
     public function delete($id){
 
 		$ch = curl_init("https://app.alegra.com/api/v1/contacts/$id");
@@ -110,7 +116,12 @@ class Application_Model_Client extends Zend_Rest_Client
 		return $resp;
 
     }
-
+    /**
+     *  Borra un contacto
+     * @param string $query peticion a realizar
+     * @param string $type OPTIONAL; tipo de peticion
+     * @return string $response en json
+     */
     public function buscar($query, $type = "query"){
 
     	$uri = "https://app.alegra.com/api/v1/contacts/$type/$query";

@@ -8,5 +8,4 @@ class IndexController extends Zend_Controller_Action
 		$this->view->headTitle('Inicio - ');
 		$this->view->saludo = "hola a todos!!";
 	}
-
 }

@@ -16,3 +16,16 @@ ServerName zend.local
 DocumentRoot /home/user/projects/zend/public
 SetEnv APPLICATION_ENV development
 </VirtualHost>
+
+
+For Built-in cli php server
+===========================
+
+<?php
+// public/rutin.php
+// to built-in server
+if (preg_match('/\.(?:png|jpg|jpeg|gif|js|css)$/', $_SERVER["REQUEST_URI"])) {
+    return false;
+} else {
+    include __DIR__ . '/index.php';
+}

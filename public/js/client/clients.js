@@ -1,14 +1,8 @@
-<?php 
-
-$response = $this->response;
-
-?>
-
-<script>
-    var datos = <?php echo $response; ?>;
-
-    var titulo = 'Contactos';
-/*Ext.onReady(function() {
+/*
+* Para mostrar los datos de todos los contactos
+* Requerida variable datos
+*/
+Ext.onReady(function() {
 
     var grid = Ext.create('Ext.grid.Panel', {
         store: {
@@ -88,5 +82,4 @@ $response = $this->response;
         grid.down('#show').setDisabled(selections.length === 0);
     });
 
-});*/
-    </script>
+});

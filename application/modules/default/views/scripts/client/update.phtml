@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 
-	var res = <?php echo $datos; ?>
+	var res = <?php echo $datos; ?>;
 
     var msg = Ext.create('Ext.window.MessageBox');
     console.log(res);
@@ -16,7 +16,7 @@
             msg : 'Todo ha salido bien',                
             
             fn : function(buttonValue, inputText, showConfig){
-                window.location = '/client'
+                window.location = '/client/show/id/'+res.id
             },
             iconCls : 'fa fa-check'
         });

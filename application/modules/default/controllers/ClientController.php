@@ -14,14 +14,12 @@ class ClientController extends Zend_Controller_Action
         $this->view->saludo = "hola a todos!!";
 
         $clien = new Application_Model_Client();
-
+        // Obtener todos los contactos
         $resp = $clien->getAll();
         $scripts = $this->view->inlineScript();
-
-        $scripts->appendFile('/js/client/search.js');
-
+        // incluir el script js
         $scripts->appendFile('/js/client/clients.js');
-
+        // respuesta a la vista
         $this->view->response = $resp;
 
     }
@@ -50,7 +48,7 @@ class ClientController extends Zend_Controller_Action
 
     public function storeAction(){
 
-
+        // datos del usuario nuevo
     	$post = $this->getRequest()->getPost();
 
 
@@ -81,16 +79,16 @@ class ClientController extends Zend_Controller_Action
         $datap['type'] = $type;
 
         $cliente = new Application_Model_Client();
-
+        // Envio datos a almacenar
         $data_string = json_encode($datap);
         $resp = $cliente->add($data_string);
-
+        // envio respuesta a la vista
         $this->view->resp = $resp;
     }
 
     public function updateAction(){
 
-        //$id = $this->_getParam('id', 0);
+        //Obtengo los datos del usuario a actualizar
         
         $post = $this->getRequest()->getPost();
         $id = $post['id'];
@@ -103,6 +101,7 @@ class ClientController extends Zend_Controller_Action
             unset($datap['city']);
         }
 
+        // Acomodo los terminos de pago
         if (isset($datap['term'])) {
             $datap['term'] = array('id' => $datap['term']);
         }
@@ -120,43 +119,49 @@ class ClientController extends Zend_Controller_Action
         $datap['type'] = $type;
 
         $cliente = new Application_Model_Client();
-
+        // Envio datos al model
         $data_string = json_encode($datap);
         $resp = $cliente->update($id, $data_string);
-
+        // Envia respuesta a la vista
         $this->view->datos = $resp;
     }
 
     public function deleteAction()
     {
+        // Obtengo el id
     	$id = $this->_getParam('id', 0);
 
         $cliente = new Application_Model_Client();
-
+        // Borra el contacto con ese id
         $response = $cliente->delete($id);
-
+        // Envio respuesta a la vista
     	$this->view->respuesta = $response;
     }
     public function showAction()
     {
+        // Obtengo el id
         $id = $this->_getParam('id', 0);
         
         $clien = new Application_Model_Client();
 
+        // Obtengo datos del contacto para el id
         $resp = $clien->get($id);
         $scripts = $this->view->inlineScript();
         $scripts->appendFile('/js/client/show.js');
 
+        // Lo mando a la vista
         $this->view->data = $resp;
     }
 
     public function buscarAction()
     {
+        // Obtengo la peticion a buscar
         $post = $this->getRequest()->getPost();
 
         $this->view->headTitle('Resultados de la busqueda - ');
         $this->view->inlineScript()->appendFile('/js/client/search.js');
         
+        // obtengo los datos
         $clien = new Application_Model_Client();
 
         $resp = $clien->buscar($post['busca']);
@@ -164,6 +169,7 @@ class ClientController extends Zend_Controller_Action
         $this->view->data = $resp;
     }
 
+    // Para mostrar los clientes
     public function clientsAction()
     {
         $this->view->headTitle('Clientes - ');
@@ -176,6 +182,7 @@ class ClientController extends Zend_Controller_Action
         $this->view->data = $resp;
     }
 
+    // Para mostrar los proveedores
     public function providersAction()
     {
         $this->view->headTitle('Proveedores - ');

@@ -14,19 +14,23 @@ Ext.onReady(function() {
         columns: [{
             header: 'ID',
             dataIndex: 'id',
-            flex: 10
+            flex: 5
         }, {
             header: 'Nombre',
             dataIndex: 'name',
-            flex: 30,
-        }, {
+            flex: 25,
+        },{
+            header: 'Identificación',
+            flex: 20,
+            dataIndex: 'identification'
+        },{
+            header: 'Celular',
+            flex: 10,
+            dataIndex: 'mobile'
+        },{
             header: 'Email',
             flex: 20,
             dataIndex: 'email'
-        },{
-        	header: 'identification',
-            flex: 20,
-        	dataIndex: 'identification'
         },{
             header: 'Observaciones',
             flex: 20,

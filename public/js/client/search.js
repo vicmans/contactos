@@ -4,6 +4,16 @@
 
 Ext.onReady(function() {
 
+    if(datos.length==0){
+        Ext.create('Ext.panel.Panel', {
+        html: '<div class="jumbotron"><p class="lead">No se encontraron resultados.</p></div>',
+        bodyStyle: {
+            background: '#eee'
+        },
+        renderTo: 'content'
+      });
+
+    }else{
     var grid = Ext.create('Ext.grid.Panel', {
         store: {
         	data: datos
@@ -14,19 +24,23 @@ Ext.onReady(function() {
         columns: [{
             header: 'ID',
             dataIndex: 'id',
-            flex: 10
+            flex: 5
         }, {
             header: 'Nombre',
             dataIndex: 'name',
-            flex: 30,
-        }, {
+            flex: 25,
+        },{
+            header: 'Identificación',
+            flex: 20,
+            dataIndex: 'identification'
+        },{
+            header: 'Celular',
+            flex: 10,
+            dataIndex: 'mobile'
+        },{
             header: 'Email',
             flex: 20,
             dataIndex: 'email'
-        },{
-        	header: 'identification',
-            flex: 20,
-        	dataIndex: 'identification'
         },{
             header: 'Observaciones',
             flex: 20,
@@ -81,5 +95,6 @@ Ext.onReady(function() {
     grid.getSelectionModel().on('selectionchange', function(selModel, selections){
         grid.down('#show').setDisabled(selections.length === 0);
     });
+}
 
 });

@@ -73,5 +73,15 @@ Ext.onReady(function() {
     });
 
 });
+    // Por si el usuario no existe
+    if (datos.code == 404) {
+      Ext.create('Ext.panel.Panel', {
+        html: '<div class="jumbotron"><p class="lead">Error: '+datos.message+'</p></div>',
+        bodyStyle: {
+            background: '#eee'
+        },
+        renderTo: 'content'
+      });
+    }
 
 });

@@ -16,7 +16,8 @@ class ClientController extends Zend_Controller_Action
         $clien = new Application_Model_Client();
 
         $resp = $clien->getAll();
-
+        $scripts = $this->view->inlineScript();
+        $scripts->appendFile('/js/client/search.js');
         $this->view->response = $resp;
 
     }

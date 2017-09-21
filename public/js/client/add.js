@@ -1,87 +1,55 @@
-/*
-* Formulario de edicion, requerida variable datos
-* con los datos del usuario a editar
-*/
-    // Por si el usuario no existe
-    if (datos.code == 404) {
-      Ext.create('Ext.panel.Panel', {
-        html: '<div class="jumbotron"><p class="lead">Error: '+datos.message+'</p></div>',
-        bodyStyle: {
-            background: '#eee'
-        },
-        border: false,
-        renderTo: 'content'
-      });
-    }
-// llenar los checkbox de los proovedores
-for (var i = datos.type.length - 1; i >= 0; i--) {
-    if(datos.type[i]=='client'){
-        var client = 1;
-    }
-    if(datos.type[i]=='provider'){
-        var provider = 1;
-    }
-}
-
 Ext.onReady(function() {
 
     var forn = Ext.create('Ext.form.Panel',{
-        title: 'Editar Contacto',
-        iconCls: 'fa fa-pencil',
+        
+        title: 'Agregar Nuevo Contacto',
+        iconCls: 'fa fa-plus',
         width: 800,
-        bodyPadding: 12,
+        bodyPadding: 8,
         items: [{
             xtype: 'textfield',
             fieldLabel: 'Nombre*',
             name: 'name',
-            value: datos['name'],
             allowBlank: false,
+            regex:/^[ a-zA-ZñÑ' ]+$/,
+            regexText:'Solo letras y espacios'
         },{
             xtype: 'textfield',
             fieldLabel: 'Identificacion',
-            name: 'identification',
-            value: datos['identification']
+            name: 'identification'
         },{
             xtype: 'textfield',
             fieldLabel: 'Direccion',
-            name: 'address',
-            value: datos.address.address
+            name: 'address'
         },{
             xtype: 'textfield',
             fieldLabel: 'Ciudad',
-            name: 'city',
-            value: datos.address.city
+            name: 'city'
         },{
             xtype: 'textfield',
             fieldLabel: 'Correo electronico',
             name: 'email',
-            value: datos.email,
             vtype: 'email'
         },{
             xtype: 'textfield',
             fieldLabel: 'Telefono1',
-            name: 'phonePrimary',
-            value: datos.phonePrimary
+            name: 'phonePrimary'
         },{
             xtype: 'textfield',
             fieldLabel: 'Telefono2',
-            name: 'phoneSecondary',
-            value: datos.phoneSecondary
+            name: 'phoneSecondary'
         },{
             xtype: 'textfield',
             fieldLabel: 'Fax',
-            name: 'fax',
-            value: datos.fax
+            name: 'fax'
         },{
             xtype: 'textfield',
             fieldLabel: 'Celular',
-            name: 'mobile',
-            value: datos.mobile
+            name: 'mobile'
         },{
            xtype: 'combobox',
            fieldLabel: 'Lista de precio',
            name: 'priceList',
-           //value: datos.priceList.name,
            store: Ext.create('Ext.data.Store', {
                 fields: ['name','id'],
                 data: [{ 
@@ -89,16 +57,15 @@ Ext.onReady(function() {
                    'id': 1
                 },{
                    'name': 'Ninguna',
-                   'id': 0
+                   'id': null
                 }]
                  }),
-           valueField: 'name',
+           valueField: 'id',
            displayField: 'name'
         },{
             xtype: 'combobox',
             fieldLabel: 'Vendedor',
             name: 'seller',
-            //value: ,
             store: Ext.create('Ext.data.Store', {
                 fields: ['name'],
                 data: [{ 
@@ -134,29 +101,27 @@ Ext.onReady(function() {
                 }]
             }),
             displayField: 'name',
-            valueField: 'id',
+            valueField: 'id'
+
         },{
             xtype: 'checkboxfield',
             fieldLabel: 'Cliente',
             inputValue: '1',
-            name: 'client',
-            checked: client
+            name: 'client'
         },{
             xtype: 'checkboxfield',
             fieldLabel: 'Proveedor',
             inputValue: '1',
-            name: 'provider',
-            checked: provider
+            name: 'provider'
         },{
             xtype: 'textarea',
             fieldLabel: 'Observaciones',
-            name: 'observations',
-            value: datos.observations
-        },{
-        xtype: 'hiddenfield',
-        name: 'id',
-        value: datos.id
-    }],
+            name: 'observations'
+        }/*,{
+            xtype: 'checkboxfield',
+            fieldLabel: 'Incluir estado de cuenta',
+            inputValue: '1',
+        }*/],
         buttons: [{
         	text: 'Limpiar',
         	handler: function(){
@@ -170,7 +135,7 @@ Ext.onReady(function() {
         		forn.getForm().submit({
         			method: 'POST',
         			standardSubmit:true,
-		    		url: '/client/update',
+		    		url: '/client/store',
 		    		
 		    		success: function(form, action){
 						console.log("listo");

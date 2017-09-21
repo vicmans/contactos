@@ -14,17 +14,8 @@ $resp = $this->respuesta;
         msg.alert('Listo', res.message,window.location = '/client');
 
     }else{
-/*       msg.show({
-                title : 'Error',
-                msg : res.message,                
-                
-                fn : function(buttonValue, inputText, showConfig){
-                    window.location = '/client'
-                },
-                iconCls : 'fa fa-times'
-            });
-*/
-       msg.alert('Listo', res.message,window.location = '/client');
+
+       msg.alert('Error', '\n'+res.message,window.location = '/client');
     }
     
 </script>

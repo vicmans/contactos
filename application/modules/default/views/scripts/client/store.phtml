@@ -8,16 +8,8 @@
         
 
     }else{
-/*       msg.show({
-                title : 'Error',
-                msg : res.message,                
-                
-                fn : function(buttonValue, inputText, showConfig){
-                    window.location = '/client'
-                },
-                iconCls : 'fa fa-times'
-            });
-*/		msg.alert('Listo', res.message,window.location = '/client/show/id/'+res.id);
+
+    msg.alert('Listo, Nuevo contacto agregado', res.message,window.location = '/client/show/id/'+res.id);
        
     }
 </script>

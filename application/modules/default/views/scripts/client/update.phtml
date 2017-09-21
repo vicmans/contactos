@@ -11,15 +11,7 @@
         
 
     }else{
-       msg.show({
-            title : 'Listo, ya se ha editado',
-            msg : 'Todo ha salido bien',                
-            
-            fn : function(buttonValue, inputText, showConfig){
-                window.location = '/client/show/id/'+res.id
-            },
-            iconCls : 'fa fa-check'
-        });
-       
+
+       msg.alert('Listo, ya se ha actualizado', 'Se actualizo: '+res.name,window.location = '/client/show/id/'+res.id);
     }
 </script>
